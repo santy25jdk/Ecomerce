@@ -91,6 +91,30 @@ function printTotal(){
     cuentaFinal.innerHTML = `$${ctaTotal}.00`;
 }
 
+/*==========7- Vaciamos el carrito al hacer click en chekout ==========*/
+const total = document.querySelector('.total');
+total.addEventListener('click', (e) => {
+    if(e.target.classList.contains('checkout')){
+        const op = confirm('Estas seguro de comprar?')
+
+        if(op){
+            buzos = buzos.map(buzo => {
+                if(objCartShop[buzo.id]?.id === buzo.id){
+                    return{
+                        ... buzo,
+                        stock: buzo.stock - objCartShop[buzo.id].amount,
+                    };
+                }else{
+                    return buzo;
+                }
+            });
+            objCartShop = {};
+
+            printBuzosInCar();
+        }
+    }
+});
+
 /*==========2- Pintamos ==========*/
 
 const compras = document.querySelector('.compras');
@@ -144,7 +168,7 @@ hoodies.addEventListener('click', (e) => {
         if(objCartShop[currentBuzo.id]){
             addBuzo(idBuzo);
         }else{
-            objCartShop[currentBuzo.id] = currentBuzo;
+            objCartShop[currentBuzo.id] = { ...currentBuzo};
             objCartShop[currentBuzo.id].amount = 1;
         }
 
@@ -174,7 +198,7 @@ compras.addEventListener('click', (e) => {
     printBuzosInCar();
 });
 
-/*==========7- dark-Mode ==========*/
+/*==========8- dark-Mode ==========*/
 const MOON = document.querySelector('.bx-moon');
 MOON.addEventListener('click', () => {
     document.body.classList.toggle('darkmode')

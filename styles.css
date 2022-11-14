@@ -13,6 +13,7 @@
 --container-color: #fff;
 --border-color: hsl(0, 0%, 94%);
 --color--btn: #ffffff;
+
 /*========= Tipografia ==========*/
 --type--font: 'Roboto', sans-serif;
 /*========== Font weight ==========*/
@@ -217,16 +218,13 @@ a{
   padding: 1rem;
 }
 
-.total .ctaTotal{
-  background-color: red;
-}
-
 .total .calculo{
   display: flex;
   justify-content: space-between;
+  color: var(--text-color);
 }
 .total button{
-  background-color: var(--card-color);
+  background-color: var(--first-color);
   cursor: pointer;
   padding: 1rem;
   max-width: 40%;
@@ -273,7 +271,9 @@ a{
   display: flex;
   flex-direction: column;
 }
-
+.container .info, .box__btn{
+  color: var(--title-color);
+}
 .container .info span{
   font-size: 1rem;
 }
